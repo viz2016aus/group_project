@@ -1,28 +1,47 @@
+<!DOCTYPE html>
 <html>
-	<head>
-	<meta charset="utf-8">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset= UTF-8">
 	<title>Visualisierung</title>
-	<link rel= "stylesheet" href="style.css">
-	</head>
-	<body>
-		<div id="ramen">
-			<div id="navlist">
-				<img src="Bilder/wwappen.png" alt="AmeisenDame">
-				<div id="navlist li">
-					<li id="active"><a href="index.html" id="current">Home</a></li>
-					<li id="active"><a href="Ideen.html" id="current">Ideen</a></li>
-				</div>
+	
+	<!-- Für die Bestandteile von Bootstrap  http://getbootstrap.com/components/  -->
+	<!-- Zum Nachschauen -->
+	
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_app.css" />
+	
+</head>
+<body class="home">
+	<div class="navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Autobahnen</a>
 			</div>
-			<div id="main">
-				<center>
-				<h1>Visualisierung</h1>
-				<h3>Wien im Vergleich</h3>
-				<h4>Mitglieder:<h4>
-				Anna Duray<br>
-				Markus Tschlatscher<br>
-				Pavlo Vasylyshyn<br>
-				</center>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.html">Home</a></li>
+				</ul>
 			</div>
 		</div>
-	</body>
+	</div>
+	<div class="container">
+		<div class="row">
+			<br/>
+			<div class="col-md-3">
+				<img src="Bilder/Logo.png">
+			</div>
+			<div class="col-md-8" style="text-align: middle;">
+				<h1>Visualisierung</h1>
+				<h4>Autobahnen in Österreich</h4>
+			<div>
+		</div>
+	</div>
+</body>
 </html>
