@@ -36,41 +36,68 @@
 	</div>
 	<div class="container">
 		<div class="row">
-		<h1>Die Daten </h1>
-		<br/>
-		Der Datensatz für unsere Visualisierung kommt von der Asfinag Homepage. Es handelt sich dabei um die durchschnittlichen Ergebnisse 
-		der Dauerzählstellen (<a href="http://www.asfinag.at/unterwegs/dauerzaehlstellen">Page</a>). Die Datensätze beginnen mit 2008.
-		Beginnen werden wir mit unseren Visualisierung mit dem Jahr 2015.<br>
-		Jeder Datensatz besteht aus: 
-		<ol>
-			<li>Autobahn: A01 - A25 mit zusätzlichen Schnellstraßen</li>
-			<li>Station: Der Kilometer auf dem sich die Stelle befindet</li>
-			<li>Zählstellenname: Der Name der Ortschaft in der sich die Stelle befindet</li>
-			<li>Zählstellennummer: Eindeutige nummer</li>
-			<li>Abschnitt(von - bis): Der Autobahnabschnitt</li>
-			<li>Richtung: Die Fartrichtung als Name</li>
-			<li>Fahrzeugklasse: Gesamt / über 3,5T / unter 3,5T </li>
-			<li>Mo - So: Durchschnittlicher Verkehr an diesen Tagen</li>
-			<li>Mo - Fr: Durchschnittlicher Verkehr an diesen Tagen</li>
-			<li>Mo : Durchschnittlicher Verkehr auf diesem Tag</li>
-			<li>Di - Do: Durchschnittlicher Verkehr an diesen Tagen</li>
-			<li>Fr : Durchschnittlicher Verkehr auf diesem Tag</li>
-			<li>SA : Durchschnittlicher Verkehr auf diesem Tag</li>
-			<li>Sonn- und Feiertage: Durchschnittlicher Verkehr an diesen Tagen</li>
-			<li>Datengüte: Wie genau sind die Daten auf diesen Tagen</li>
-		</ol>
-		Leider sind die Daten nur im .xls Format zu bekommen und müssen für eine bessere Verarbeitung gereinigt werden. 
-		Die Leseleiste, Unterteilung und Legende müssen entfernt werden.
-		</br>
-		<h1>Die Visualisierung</h1>
-		<br/>
-		Für die erste Iteration beginnen wir mit der A1 und dem Jahr 2015. Die Länge des Abschnitts soll dabei frei wählbar sein. 
-		Auch die Richtung soll man sich aussuchen können. Die Autobahnen sollen sich den Daten entsprächend verfärben.
-		Hier eine kleine Präsentation zum Ablauf:<br/>
-		<br/>
 		<div class="col-md-12">
-				<img src="Bilder/gif_skizze.gif">
+			<h2>Das Projekt</h2>
+			Das Projekt soll Nutzern die Möglichkeit bieten auf vergangene Daten zur Verkehrslage auf den österreichischen Autobahnen zu greifen
+			zu können und diese als überschaubare grafische Darstellung, anstatt als umständliche und relativ unübersichtliche Liste zu sehen. 
+			Dabei soll das ganze sowohl einfach als auch intuitiv zu verstehen sein oder ein Scenario zur Handhabung zur Verfügung stellen,
+			wenn sich herausstellt, dass die Funktionalitäten nicht intuitiv erfassbar sind.<br/>
 		</div>
+		
+		<div class="col-md-12">
+			<br/>
+			<h3>Die Daten </h3>
+			Der Datensatz für unsere Visualisierung kommt von der Asfinag Homepage. Es handelt sich dabei um die durchschnittlichen Ergebnisse 
+			der Dauerzählstellen (<a href="http://www.asfinag.at/unterwegs/dauerzaehlstellen">Page</a>). Die Datensätze beginnen mit 2008.
+			Für unsere Visualisierung verwenden wir zunächst nur die Datensätze aus dem Jahr 2015.<br>
+			Jeder Datensatz besteht aus: 
+			<ol>
+				<li>Autobahn: A01 - A25 mit zusätzlichen Schnellstraßen</li>
+				<li>Station: Der Kilometer auf dem sich die Stelle befindet</li>
+				<li>Zählstellenname: Der Name der Ortschaft in der sich die Stelle befindet</li>
+				<li>Zählstellennummer: Eindeutige nummer</li>
+				<li>Abschnitt(von - bis): Der Autobahnabschnitt</li>
+				<li>Richtung: Die Fartrichtung als Name</li>
+				<li>Fahrzeugklasse: Gesamt / über 3,5T / unter 3,5T </li>
+				<li>Mo - So: Durchschnittlicher Verkehr an diesen Tagen</li>
+				<li>Mo - Fr: Durchschnittlicher Verkehr an diesen Tagen</li>
+				<li>Mo : Durchschnittlicher Verkehr auf diesem Tag</li>
+				<li>Di - Do: Durchschnittlicher Verkehr an diesen Tagen</li>
+				<li>Fr : Durchschnittlicher Verkehr auf diesem Tag</li>
+				<li>SA : Durchschnittlicher Verkehr auf diesem Tag</li>
+				<li>Sonn- und Feiertage: Durchschnittlicher Verkehr an diesen Tagen</li>
+				<li>Datengüte: Wie genau sind die Daten auf diesen Tagen</li>
+			</ol>
+			Leider sind die Daten nur im .xls Format zu bekommen und müssen für eine bessere Verarbeitung gereinigt werden. 
+			Die Leseleiste, Unterteilung und Legende müssen entfernt werden.<br/>
+		</div>
+			
+		<div class="col-md-12">
+			<br/>
+			<h3>Die Visualisierung</h3>
+			Auf einer Karte von Österreich werden die Autobahnen sowie die jeweiligen Checkpoints gezeigt. Man kann sich entscheiden, ob man Informationen
+			über die gesamte Strecke einer Autobahn (z.B. A1) haben möchte, über einen Checkpoint oder über einen Streckenabschnitt, der zwei oder mehr Checkpoints beinhaltet.
+			Anschließend werden die Daten in Form von Histogrammen ausgegeben.(siehe folgende "Animation")
+			Eine weitere Idee ist, dass die unterschiedlichen Streckenabschnitte der gewählten Strecke ähnlich einer Heatmap unterschiedlich (intensiv)
+			verfärben sollen, um zu zeigen auf welchen Streckenabschnitten die Verkehrslage über oder unter dem Durschnitt liegt.
+			Hier eine kleine "Animation" zum möglichen Ablauf (ohne unterschiedliche Verfärbung):<br/>
+			<br/>
+		</div>
+		
+		<div class="col-md-12">
+			<img src="Bilder/gif_skizze.gif">
+		</div>
+		
+		<div class="col-md-12">
+			<br/>
+			<h3>Verwendete Sprachen und Tools</h3>
+			<ul>
+				<li>HTML/CSS</li>
+				<li>JavaScript, d3.js</li>
+				<li>ggf. R oder Tableau</li>
+			</ul>
+		</div>
+		<br/>
 		</div>
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
