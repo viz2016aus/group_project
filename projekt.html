@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset= UTF-8">
+	<title>Visualisierung</title>
+	
+	<!-- Für die Bestandteile von Bootstrap  http://getbootstrap.com/components/  -->
+	<!-- Zum Nachschauen -->
+	
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_app.css" />
+	
+</head>
+<body class="home">
+	<div class="navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Autobahnen</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li class="active"><a href="projekt.html">Projekt</a></li>
+					<li><a href="personas.html">Personas</a></li>
+					<li><a href="team.html">Team</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+		<h1>Die Daten </h1>
+		<br/>
+		Der Datensatz für unsere Visualisierung kommt von der Asfinag Homepage. Es handelt sich dabei um die durchschnittlichen Ergebnisse 
+		der Dauerzählstellen (<a href="http://www.asfinag.at/unterwegs/dauerzaehlstellen">Page</a>). Die Datensätze beginnen mit 2008.
+		Beginnen werden wir mit unseren Visualisierung mit dem Jahr 2015.<br>
+		Jeder Datensatz besteht aus: 
+		<ol>
+			<li>Autobahn: A01 - A25 mit zusätzlichen Schnellstraßen</li>
+			<li>Station: Der Kilometer auf dem sich die Stelle befindet</li>
+			<li>Zählstellenname: Der Name der Ortschaft in der sich die Stelle befindet</li>
+			<li>Zählstellennummer: Eindeutige nummer</li>
+			<li>Abschnitt(von - bis): Der Autobahnabschnitt</li>
+			<li>Richtung: Die Fartrichtung als Name</li>
+			<li>Fahrzeugklasse: Gesamt / über 3,5T / unter 3,5T </li>
+			<li>Mo - So: Durchschnittlicher Verkehr an diesen Tagen</li>
+			<li>Mo - Fr: Durchschnittlicher Verkehr an diesen Tagen</li>
+			<li>Mo : Durchschnittlicher Verkehr auf diesem Tag</li>
+			<li>Di - Do: Durchschnittlicher Verkehr an diesen Tagen</li>
+			<li>Fr : Durchschnittlicher Verkehr auf diesem Tag</li>
+			<li>SA : Durchschnittlicher Verkehr auf diesem Tag</li>
+			<li>Sonn- und Feiertage: Durchschnittlicher Verkehr an diesen Tagen</li>
+			<li>Datengüte: Wie genau sind die Daten auf diesen Tagen</li>
+		</ol>
+		Leider sind die Daten nur im .xls Format zu bekommen und müssen für eine bessere Verarbeitung gereinigt werden. 
+		Die Leseleiste, Unterteilung und Legende müssen entfernt werden.
+		</br>
+		<h1>Die Visualisierung</h1>
+		<br/>
+		Für die erste Iteration beginnen wir mit der A1 und dem Jahr 2015. Die Länge des Abschnitts soll dabei frei wählbar sein. 
+		Auch die Richtung soll man sich aussuchen können. Die Autobahnen sollen sich den Daten entsprächend verfärben.
+		Hier eine kleine Präsentation zum Ablauf:<br/>
+		<br/>
+		<div class="col-md-12">
+				<img src="Bilder/gif_skizze.gif">
+		</div>
+		</div>
+	</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
