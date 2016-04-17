@@ -4,28 +4,22 @@
 	top: 150px;
 }
 
-#info_div_1 {
+#dates_div {
 	position: absolute;
-	left: 100px;
-	top: 130px;
+	left: 500px;
+	top: 20px;
+	z-index: 102;
 }
 
-#info_div_font_1 {
-	font-size: 55px;
-	font-family: Verdana, Geneva, sans-serif;
-	color: red;
-}
-
-#info_div_2 {
+#logo_div {
 	position: absolute;
-	left: 100px;
-	top: 200px;
+	left: 20px;
+	top: 20px;
 }
 
-#info_div_font_2 {
-	font-size: 36px;
-	font-family: Verdana, Geneva, sans-serif;
-	color: red;
+#logo_img {
+	width: 50%;
+	height: 50%;
 }
 
 #svg_div {
@@ -66,4 +60,19 @@
 	top: 50px;
 	width: 180px;
 	height: 55px;
+}
+
+.axis text {
+	font: 16px sans-serif;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: red;
+	shape-rendering: crispEdges;
+}
+
+.tick line {
+	opacity: 0.1;
 }
