@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<meta charset="UTF-8" />
 <title>Group Project</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="js/jquery-2.2.1.min.js"></script>
-<script src="js/d3.js"></script>
-<script type="text/javascript">
+<script src="js/d3.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
 var aus_lat_u = 49.2;
 var aus_lat_l = 46.3;
 var aus_lon_r = 17.2;
@@ -210,7 +211,12 @@ get_data();
 function draw_points(highway, checkpoint, point_num, latitude, longitude, qty) {
 lat = y_lat * (aus_lat_u - latitude) + pol_min_y;
 lon = x_lon * (longitude - aus_lon_l) + pol_min_x;
-var circ_r = qty * 25 / qtyMax + 15;
+if (qty > 0) {
+	var circ_r = qty * 25 / qtyMax + 15;
+} else {
+	circ_r = 3;
+}
+
 svg.append("circle")
 	.attr("cx", lon)
 	.attr("cy", lat)
@@ -219,6 +225,7 @@ svg.append("circle")
 	.attr("stroke-width", 0)
 	.attr("r", circ_r)
 	.style("opacity", 0.2)
+	//.style("visibility", "hidden")
 	.style("fill", "red")
 	.style("cursor", "pointer")
 	.on("click", 
@@ -387,28 +394,37 @@ svg.append("circle")
 }
 
 function get_data() {
-var sel_obj = document.getElementById("date_sel");
-var map_date = sel_obj.options[sel_obj.selectedIndex].value;
-d3.selectAll("circle").remove();
-d3.csv("data/" + map_date + "_s.csv", function(data) {
-	qtyMax = d3.max(data, 
-	function(d){
-		return d.qty++;
+	data_arr = [];
+	sel_data_arr = [];
+	var sel_obj = document.getElementById("date_sel");
+	var map_date = sel_obj.options[sel_obj.selectedIndex].value;
+	d3.selectAll("circle").remove();
+	d3.tsv("data/" + map_date + ".tsv", function(data) {
+		qtyMax = d3.max(data, 
+		function(d){
+			return d.qty++;
+		});
+		data.forEach(
+			function(d){
+				push_val = [];
+				push_val[0] = d.highway;
+				push_val[1] = d.checkpoint;
+				push_val[2] = d.point_num;
+				push_val[3] = d.latitude;
+				push_val[4] = d.longitude;
+				push_val[5] = d.qty;
+				if (document.getElementById('skip_data_chk').checked) {
+					if (d.qty > 0) {
+						data_arr.push(push_val);
+						draw_points(d.highway, d.checkpoint, d.point_num, d.latitude, d.longitude, d.qty);
+					}
+				} else {
+					data_arr.push(push_val);
+					draw_points(d.highway, d.checkpoint, d.point_num, d.latitude, d.longitude, d.qty);
+				}
+			}
+		);
 	});
-	data.forEach(
-		function(d){ 
-			push_val = [];
-			push_val[0] = d.highway;
-			push_val[1] = d.checkpoint;
-			push_val[2] = d.point_num;
-			push_val[3] = d.latitude;
-			push_val[4] = d.longitude;
-			push_val[5] = d.qty;
-			data_arr.push(push_val);
-			draw_points(d.highway, d.checkpoint, d.point_num, d.latitude, d.longitude, d.qty);
-		}
-	);
-});
 }
 
 var drag = d3.behavior.drag()
@@ -723,6 +739,179 @@ function init_b_chart() {
 				.style("opacity", 1);
 	esc_pressed();
 }
+
+function hwy_select() {
+	var j = 0;
+	for (var i = 0; i < data_arr.length; i++) {
+		if (i == 0) {
+			color = "rgb(255," + 14 * j + "," + 14 * j + ")";
+			draw_real_hwy(data_arr[i][0], color);
+			//draw_abstract_hwy(data_arr[i][0], color);
+		} else {
+			if (data_arr[i][0] != data_arr[i - 1][0]) {
+				j++;
+				color = "rgb(255," + 14 * j + "," + 14 * j + ")";
+				draw_real_hwy(data_arr[i][0], color);
+				//draw_abstract_hwy(data_arr[i][0], color);
+			}
+		}
+	}
+}
+
+function draw_abstract_hwy(hwy_name, color) {
+	var point_d = 24; // 24 optimal
+	var abs_arr = [];
+	var x_n;
+	var y_n;
+	for (i = 0; i < data_arr.length; i++) {
+		if (data_arr[i][0] == hwy_name) {
+			lat = y_lat * (aus_lat_u - data_arr[i][3]) + pol_min_y;
+			lon = x_lon * (data_arr[i][4] - aus_lon_l) + pol_min_x;
+			var circ_r = 2;
+/*
+			svg.append("circle")
+				.attr("cx", lon)
+				.attr("cy", lat)
+				.attr("id", "abs_" + data_arr[i][0] + "_" + data_arr[i][2])
+				.attr("class", "abs_" + data_arr[i][0])
+				.attr("stroke-width", 0)
+				.attr("r", circ_r)
+				.style("opacity", 1)
+				.style("fill", "green")
+				.style("cursor", "pointer");
+*/
+			if (data_arr[i + 1][0] == hwy_name) {
+/*
+				svg.append("line")
+					.attr("x1", lon)
+					.attr("y1", lat)
+					.attr("x2", x_lon * (data_arr[i + 1][4] - aus_lon_l) + pol_min_x)
+					.attr("y2", y_lat * (aus_lat_u - data_arr[i + 1][3]) + pol_min_y)
+					.attr("id", "abs_" + data_arr[i][0] + "_" + data_arr[i][2] + "_line_a")
+					.attr("stroke", "black")
+					.attr("stroke-opacity", 1)
+					.attr("stroke-width", 1);
+*/
+				var p1 = {
+					x: lon,
+					y: lat
+				};
+				var p2 = {
+					x: x_lon * (data_arr[i + 1][4] - aus_lon_l) + pol_min_x,
+					y: y_lat * (aus_lat_u - data_arr[i + 1][3]) + pol_min_y
+				};
+				var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+				var angle_n = Math.round(angleDeg / 45) * 45;
+				if (abs_arr.length > 0) {
+					x_0 = x_n;
+					y_0 = y_n;
+					x_n = Math.cos(angle_n * Math.PI/180) * point_d + x_n;
+					y_n = Math.sin(angle_n * Math.PI/180) * point_d + y_n;
+				} else {
+					svg.append("circle")
+						.attr("cx", lon)
+						.attr("cy", lat)
+						.attr("id", "abs_" + data_arr[i][0] + "_" + data_arr[i][2] + "_n")
+						.attr("class", "abs_" + data_arr[i][0] + "_n")
+						.style("stroke-width", 1)
+						.style("stroke", "black")
+						.attr("r", 5)
+						.style("opacity", 1)
+						.style("fill", color)
+						.style("cursor", "pointer");
+					
+					x_0 = lon;
+					y_0 = lat;
+					x_n = Math.cos(angle_n * Math.PI/180) * point_d + lon;
+					y_n = Math.sin(angle_n * Math.PI/180) * point_d + lat;
+				}
+				push_val = [];
+				push_val[0] = x_n;
+				push_val[1] = y_n;
+				abs_arr.push(push_val);
+				svg.append("circle")
+					.attr("cx", x_n)
+					.attr("cy", y_n)
+					.attr("id", "abs_" + data_arr[i][0] + "_" + data_arr[i][2] + "_n")
+					.attr("class", "abs_" + data_arr[i][0] + "_n")
+					.style("stroke-width", 1)
+					.style("stroke", "black")
+					.attr("r", 5)
+					.style("opacity", 1)
+					.style("fill", color)
+					.style("cursor", "pointer");
+
+				svg.append("line")
+					.attr("x1", x_0)
+					.attr("y1", y_0)
+					.attr("x2", x_n)
+					.attr("y2", y_n)
+					.attr("id", "abs_" + data_arr[i][0] + "_" + data_arr[i][2] + "_line_b")
+					.style("stroke", color)
+					.style("stroke-opacity", 1)
+					.style("stroke-width", 3);
+			}
+		}
+	}
+}
+
+function draw_real_hwy(hwy_name) {
+	var x1, y1, x2, y2;
+	for (i = 0; i < data_arr.length; i++) {
+		if (data_arr[i][0] == hwy_name) {
+			y1 = y_lat * (aus_lat_u - data_arr[i][3]) + pol_min_y;
+			x1 = x_lon * (data_arr[i][4] - aus_lon_l) + pol_min_x;
+			y2 = y_lat * (aus_lat_u - data_arr[i + 1][3]) + pol_min_y;
+			x2 = x_lon * (data_arr[i + 1][4] - aus_lon_l) + pol_min_x;
+			if (data_arr[i + 1][0] == hwy_name) {
+				svg.append("line")
+					.attr("x1", x1)
+					.attr("y1", y1)
+					.attr("x2", x2)
+					.attr("y2", y2)
+					.attr("id", "real_" + data_arr[i][0] + "_" + data_arr[i][2] + "_hwy")
+					.style("stroke", color)
+					.style("stroke-opacity", 1)
+					.style("stroke-width", 3);
+				svg.append("circle")
+					.attr("cx", x1)
+					.attr("cy", y1)
+					.attr("id", "real_" + data_arr[i][0] + "_" + data_arr[i][2] + "_circ")
+					.attr("class", "real_" + data_arr[i][0] + "_circ")
+					.style("stroke-width", 1)
+					.style("stroke", "black")
+					.attr("r", 4)
+					.style("opacity", 1)
+					.style("fill", color)
+					.style("cursor", "pointer");
+			} else {
+				svg.append("circle")
+					.attr("cx", x1)
+					.attr("cy", y1)
+					.attr("id", "real_" + data_arr[i][0] + "_" + data_arr[i][2] + "_circ")
+					.attr("class", "real_" + data_arr[i][0] + "_circ")
+					.style("stroke-width", 1)
+					.style("stroke", "black")
+					.attr("r", 4)
+					.style("opacity", 1)
+					.style("fill", color)
+					.style("cursor", "pointer");
+			}
+		}
+	}
+}
+
+function show_real_map() {
+	var sel_obj = document.getElementById("map_sel");
+	var map = sel_obj.options[sel_obj.selectedIndex].value;
+	document.getElementById("real_map_au").src = map;
+}
+
+function requery_all() {
+	d3.select("svg").remove();
+	d3.select("#b_chart_id").remove();
+	init_svg();
+}
 </script>
 </head>
 
@@ -731,43 +920,48 @@ function init_b_chart() {
 <div id="dates_div">
 <table border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td><b>Beta 1.2</b></td>
-    <td width="25"></td>
+    <td><b>Dev. 1.2.1</b></td>
+    <td width="20"></td>
     <td><a href="summary.html">Summary</a></td>
-    <td width="25"></td>
+    <td width="20"></td>
     <td>
-<select id="date_sel" onchange="get_data()">
-	<option value="Februar_2016">Februar 2016</option>
-	<option value="Januar_2016">Januar 2016</option>
-</select>
+	<select id="date_sel" onchange="get_data()">
+		<option value="Februar_2016">Februar 2016</option>
+		<option value="Januar_2016">Januar 2016</option>
+    	<option value="Dezember_2015">Dezember 2015</option>
+	</select>
 	</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td width="20"></td>
+    <td>
+    <input type="button" value="Show Hwy" style="width: 100px;" onclick="hwy_select()">
+    <!--<input type="button" value="show map" onclick="show_real_map()">-->
+    </td>
+    <td width="20"></td>
+    <td><input type="checkbox" id="skip_data_chk"> Skip empty data</td>
+    <td width="20"></td>
+    <td><input type="button" id="query_data_btn" value="Requery" onClick="requery_all()"></td>
+    <td width="20"></td>
+    <td>
+	<select id="map_sel" onchange="show_real_map()">
+		<option value="">No map</option>
+		<option value="bilder/tmp.jpg">Map 1</option>
+	</select>
+    </td>
   </tr>
 </table>
 </div>
 <div id="logo_div"><img src="bilder/logo_2.gif" id="logo_img"></div>
 <div id="svg_div"></div>
-<div id="map_div"><?php include ('bilder/map.svg'); ?></div>
-<!--<div id="austria_map"><img src="bilder/map_with_coord.jpg"></div>-->
+<div id="map_div">
+<!--<?php include ('bilder/map.svg'); ?>-->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1555px" height="800px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1555 800"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+  <polygon id="map_polygon" points="12,434 22,437 29,438 39,438 47,431 50,424 56,419 62,420 65,424 65,431 67,436 71,437 74,434 80,436 86,438 93,434 92,442 97,446 100,452 101,456 107,452 118,472 113,477 115,481 114,487 118,493 124,488 127,491 130,486 140,487 144,490 144,495 139,504 140,510 138,512 135,512 131,518 148,518 154,515 166,508 172,499 177,491 184,489 192,477 195,467 193,458 188,453 190,442 190,438 187,430 195,428 198,431 196,433 196,439 201,443 212,444 220,436 223,434 228,435 254,446 256,450 264,450 266,449 276,445 285,451 276,457 279,460 288,464 299,477 297,482 298,488 304,489 315,489 320,490 326,488 341,479 349,479 350,483 349,488 356,489 360,485 368,476 382,476 386,472 384,469 381,467 390,457 395,455 402,457 406,458 414,456 420,453 424,448 426,439 434,432 443,434 460,434 474,437 477,435 479,431 499,427 537,429 546,429 552,421 553,409 548,405 547,400 550,398 559,392 559,398 556,402 559,408 568,405 572,404 582,407 595,403 598,406 600,414 611,423 621,423 635,412 648,409 661,413 666,412 665,418 676,429 672,432 669,437 669,445 671,449 679,452 695,467 703,473 706,469 712,473 717,471 722,463 720,457 719,449 722,447 722,441 723,437 729,426 729,416 723,403 717,398 710,401 703,400 698,399 692,395 697,388 698,381 713,358 707,351 701,335 684,322 683,312 666,293 661,284 663,276 667,275 672,268 680,264 688,252 700,249 707,244 710,243 722,233 748,224 772,220 799,197 800,193 801,186 804,182 804,169 807,162 808,156 805,151 805,147 803,143 808,138 818,137 828,138 837,142 844,144 851,150 858,155 861,155 861,148 862,144 870,143 874,137 877,127 878,119 877,113 876,106 880,103 876,101 873,98 873,92 879,83 885,83 891,86 899,92 912,99 918,108 921,111 923,115 919,117 917,120 919,126 924,131 930,134 940,135 959,137 980,144 984,142 989,138 997,134 1001,130 1004,119 1007,117 1010,121 1022,128 1034,123 1036,126 1037,130 1041,129 1046,133 1047,136 1051,137 1055,133 1056,106 1069,92 1070,85 1073,82 1074,76 1080,75 1088,76 1097,80 1102,80 1105,75 1102,69 1103,64 1107,44 1107,29 1106,16 1108,11 1109,6 1113,5 1128,9 1140,9 1142,16 1142,27 1149,26 1153,23 1161,22 1164,16 1166,10 1169,14 1178,14 1205,24 1217,34 1230,38 1248,47 1262,47 1270,42 1278,43 1279,48 1286,49 1287,53 1293,52 1295,59 1299,57 1300,61 1320,75 1330,80 1345,78 1353,78 1380,81 1387,83 1395,69 1402,58 1405,59 1411,59 1417,57 1424,61 1442,65 1446,77 1459,77 1471,83 1477,83 1486,80 1493,87 1496,106 1502,114 1505,119 1505,131 1497,143 1496,147 1489,159 1488,178 1486,184 1487,189 1493,190 1499,195 1498,201 1501,204 1502,208 1510,214 1511,221 1515,235 1515,244 1524,254 1529,254 1537,265 1534,272 1534,277 1537,279 1537,284 1546,288 1552,292 1541,303 1543,307 1541,312 1539,316 1542,320 1539,329 1536,333 1529,335 1526,338 1528,342 1532,343 1535,348 1537,352 1533,355 1535,361 1537,372 1539,380 1543,382 1528,387 1516,389 1508,392 1499,391 1497,384 1493,387 1488,394 1474,393 1468,386 1466,381 1445,373 1439,373 1432,377 1430,385 1419,394 1417,396 1413,392 1408,402 1423,408 1428,407 1443,412 1449,411 1456,416 1459,424 1458,430 1465,435 1466,443 1461,447 1456,450 1457,462 1449,471 1426,482 1421,477 1416,480 1416,491 1414,497 1419,501 1425,516 1423,523 1416,528 1416,533 1413,539 1415,545 1421,547 1420,556 1423,558 1431,555 1434,559 1432,565 1425,572 1425,577 1427,581 1433,584 1430,587 1419,593 1426,595 1432,601 1424,602 1417,604 1411,601 1399,601 1387,600 1385,609 1381,611 1379,620 1370,625 1363,633 1356,643 1350,645 1341,652 1329,655 1328,660 1328,667 1328,679 1329,687 1337,695 1338,703 1332,697 1325,696 1303,688 1282,695 1263,694 1257,690 1257,701 1253,705 1244,705 1234,711 1232,720 1224,723 1212,715 1175,717 1143,715 1128,719 1122,729 1116,723 1108,728 1100,729 1093,735 1085,759 1076,764 1071,762 1063,773 1059,773 1051,780 1045,781 1038,797 1033,798 1026,786 1017,789 1004,779 993,782 951,781 935,769 927,767 918,769 893,758 878,762 861,757 849,757 826,750 819,749 811,744 799,746 791,744 773,748 761,748 743,738 723,734 678,731 661,720 652,722 644,716 634,716 620,717 608,711 598,709 589,704 582,697 577,683 573,681 566,679 562,675 561,668 563,663 564,657 560,649 555,649 549,649 545,645 542,642 533,639 536,634 532,619 531,614 533,609 543,603 550,596 550,588 545,586 535,588 512,598 500,599 490,600 472,612 462,613 454,618 450,618 443,612 436,612 425,609 416,610 409,613 401,607 397,607 386,617 380,617 368,612 359,612 343,616 333,621 326,627 319,634 317,644 312,655 311,662 307,665 304,670 299,675 295,675 286,674 279,675 271,675 265,671 261,671 255,671 251,668 247,668 243,669 241,666 247,661 248,658 228,644 221,645 202,650 197,650 189,644 188,636 189,631 190,627 190,621 180,612 174,603 169,605 158,615 157,618 156,623 153,624 145,624 140,630 138,636 135,641 127,644 121,645 114,645 103,639 96,632 73,623 67,616 69,602 70,598 67,596 67,593 41,583 28,578 11,578 17,571 18,565 18,558 15,552 11,546 7,544 7,541 9,537 9,533 6,527 7,521 2,515 8,506 11,501 17,495 18,488 28,476 30,471 31,460 21,452 16,448 11,438 "/>
+</svg>
+</div>
+<div id="abstract_map"><div>
+<div id="austria_map"><img id="real_map_au" src=""></div>
 <div><img id="map_tmp" src="bilder/tmp.jpg"><div>
 <input id="map_but" type="button" style="visibility:hidden" value="Map data" onclick="get_data()">
 </body>
