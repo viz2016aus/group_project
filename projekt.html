@@ -28,6 +28,15 @@
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Home</a></li>
 					<li class="active"><a href="projekt.html">Projekt</a></li>
+					<li class="dropdown">
+						<a href="prototype.html" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+						aria-haspopup="true" aria-expanded="false">Prototypen<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="proto1.html">Prototyp 1</a></li>
+						<li><a href="proto2.html">Prototyp 2</a></li>
+						<li><a href="proto3.html">Prototyp 3</a></li>
+						</ul>
+					</li>
 					<li><a href="personas.html">Personas</a></li>
 					<li><a href="team.html">Team</a></li>
 				</ul>
@@ -49,7 +58,7 @@
 			<h3>Die Daten </h3>
 			Der Datensatz für unsere Visualisierung kommt von der Asfinag Homepage. Es handelt sich dabei um die durchschnittlichen Ergebnisse 
 			der Dauerzählstellen (<a href="http://www.asfinag.at/unterwegs/dauerzaehlstellen">Page</a>). Die Datensätze beginnen mit 2008.
-			Für unsere Visualisierung verwenden wir zunächst nur die Datensätze aus dem Jahr 2015.<br>
+			Für unsere Visualisierung beginnen wir bei Februar 2016.<br>
 			Jeder Datensatz besteht aus: 
 			<ol>
 				<li>Autobahn: A01 - A25 mit zusätzlichen Schnellstraßen</li>
@@ -69,25 +78,10 @@
 				<li>Datengüte: Wie genau sind die Daten auf diesen Tagen</li>
 			</ol>
 			Leider sind die Daten nur im .xls Format zu bekommen und müssen für eine bessere Verarbeitung gereinigt werden. 
-			Die Leseleiste, Unterteilung und Legende müssen entfernt werden.<br/>
+			Die Leseleiste, Unterteilung und Legende müssen entfernt werden. Wenn eine Zählstelle ausgefallen ist wurde dies 
+			im Datensatz mit einer -1 berücksitigt. Für unsere Visualisierung werden wir diese nicht entfernen, sondern als 
+			fehlende Daten darstellen.<br/>
 		</div>
-			
-		<div class="col-md-12">
-			<br/>
-			<h3>Die Visualisierung</h3>
-			Auf einer Karte von Österreich werden die Autobahnen sowie die jeweiligen Checkpoints gezeigt. Man kann sich entscheiden, ob man Informationen
-			über die gesamte Strecke einer Autobahn (z.B. A1) haben möchte, über einen Checkpoint oder über einen Streckenabschnitt, der zwei oder mehr Checkpoints beinhaltet.
-			Anschließend werden die Daten in Form von Histogrammen ausgegeben.(siehe folgende "Animation")
-			Eine weitere Idee ist, dass die unterschiedlichen Streckenabschnitte der gewählten Strecke ähnlich einer Heatmap unterschiedlich (intensiv)
-			verfärben sollen, um zu zeigen auf welchen Streckenabschnitten die Verkehrslage über oder unter dem Durschnitt liegt.
-			Hier eine kleine "Animation" zum möglichen Ablauf (ohne unterschiedliche Verfärbung):<br/>
-			<br/>
-		</div>
-		
-		<div class="col-md-12">
-			<img src="Bilder/gif_skizze.gif">
-		</div>
-		
 		<div class="col-md-12">
 			<br/>
 			<h3>Verwendete Sprachen und Tools</h3>
@@ -97,7 +91,6 @@
 				<li>ggf. R oder Tableau</li>
 			</ul>
 		</div>
-		<br/>
 		</div>
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
