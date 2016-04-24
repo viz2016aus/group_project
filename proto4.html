@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset= UTF-8">
+	<title>Visualisierung</title>
+	
+	<!-- Für die Bestandteile von Bootstrap  http://getbootstrap.com/components/  -->
+	<!-- Zum Nachschauen -->
+	
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_app.css" />
+	
+</head>
+<body class="home">
+	<div class="navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Autobahnen</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="projekt.html">Projekt</a></li>
+					<li class="dropdown">
+						<a href="prototype.html" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+						aria-haspopup="true" aria-expanded="false">Prototypen<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="proto1.html">Prototyp 1</a></li>
+						<li><a href="proto2.html">Prototyp 2</a></li>
+						<li><a href="proto3.html">Prototyp 3</a></li>
+						<li><a href="proto4.html">Prototyp 4</a></li>
+						</ul>
+					</li>
+					<li><a href="personas.html">Personas</a></li>
+					<li><a href="team.html">Team</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<br/>
+				<h1>Prototyp 4</h1>
+				<h2>Idee</h2>
+				Bei diesem Prototypen kann sich der Benutzer den Startpunkt völlig frei aussuchen. Die Anzahl der Ausgewählten Felder 
+				sollte zu keinem Übersichtsverlust führen. Farben und Größe kann frei eingestellt werden und die Übersicht weiter verbessern. 
+				Funktionalität kann über eine Legende oder über Tooltipps erfolgen. 
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+			<img src="Bilder/proto_4.png" class="img-thumbnail">
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<br/>
+				<h2>Ablauf</h2>
+				<ol>
+				<li>Diese Anzeige bleibt immer gleich. Bei Tagen stehen nur die zur Auswahl die tatsächlich in den Daten enthalten sind.
+					Start gibt an, bei welcher Messstation begonnen werden soll</li><br/>
+				<li>In diesem Bereich werden die schon ausgewählten Elemente angezeigt. Durch klicken auf + oder - kann man Elemente hinzufügen 
+					oder entfernen. Jahr, Monat und Tage sind allgemein gültig. Bei Start stehen die jeweiligen Messstationen zur auswahl die sich 
+					auf dieser Autobahn (gleiche Zeile) befinden.Mit einem Klick auf die Farbe kann zwischen mehreren verschiedenen Farben wählen.</li><br/>
+				<li>Das + und - an dieser Stelle sind nur aktiv wenn schon eine weitere Autobahn ausgewählt wurde.</li><br/>
+				<li>Hier kann bestimmt werden welche Daten berücksichtigt werden.</li><br/>
+				<li>An dieser Stelle kann man weitere Messpunkte hinzufügen oder entfernen. Der letzte Pfeil (>>) fügt alle Punkte bis zum ende der 
+					Autobahn hinzu.</li><br/>
+				<li>Dieser Strahl stellt die Autobahn dar. Es wird jeweils nur der Start und der Endknoten mit Namen angezeigt. Die Messstationen die
+					die dazwischen liegen werden nur durch kleine Kreise dargestellt. Wird eine zweite Autobahn ausgewählt kommt ein zweiter Strahl 
+						direkt darunter und stellt die zweite Autobahn dar.</li><br/>
+				<li>Mit den Pfeilen kann die gewünschte Richtung eingegeben werden. Mit einem Doppelklick auf Richtung werden alle Daten kompiniert</li><br/>
+				<li>In dieses Fenster kommen die Eigentlichen "Ergebnisse" der Auswahl. Die Messpunkte werden in gewünschter Richtung aufaddiert 
+					und in der ausgesuchten Farbe dargestellt. Ist eine Zweite Autobahn ausgewählt kommt ein zweiter Balken direkt dazu. 
+					Auf Wunsch kann ein Raster zugeschalten werden. Der Schwarz umrandete Bereich soll als jpg exportiert werden können.</li><br/>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
