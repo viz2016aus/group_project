@@ -10,9 +10,77 @@
 	<link rel="stylesheet" href="css/bootstrap.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/style_app.css" />
-	
+<style>
+.p_title {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 36px;
+	text-align: center;
+	color: red;
+}
+.p_0 {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	color: red;
+}
+.p_1 {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 20px;
+	color: red;
+}
+.p_2 {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 16px;
+}
+.main_tbl {
+	width: 1200px;
+	padding: 0px;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+.main_tbl td {
+	vertical-align:top;
+}
+.tbl_col_2 {
+	width: 58%;
+}
+.tbl_col_3 {
+	width: 2%;
+}
+.tbl_col_4 {
+	width: 40%;
+}
+.tbl_v_spacing {
+	height: 22px;
+}
+.story_tbl {
+	padding: 0px;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+.p_bull {
+	font-size: 20px;
+}
+.bull_spacing {
+	width: 8px;
+}
+.proto_img {
+	width: 100%;
+}
+.calendar_proto_tbl {
+	padding: 0px;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+.calendar_img {
+	width: 100%;
+}
+.calendar_spacing {
+	width: 2px;
+}
+</style>
 </head>
-<body class="home">
+<body class="home" onLoad="load_proto_2()">
 	<div class="navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -46,7 +114,282 @@
 		</div>
 	</div>
 	<div class="container">
-		Für Pavlo
+<table class="main_tbl">
+  <tr>
+    <td class="tbl_col_1"></td>
+    <td class="tbl_col_2"><p class="p_title">Prototype 2</p></td>
+    <td class="tbl_col_3"></td>
+    <td class="tbl_col_4"></td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">1.</p></td>
+    <td><a href="bilder/Slide_1.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_1.jpg"></a></td>
+    <td></td>
+    <td>
+    <p class="p_1">Default View</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">A contour of the Austrian border.</p></td>
+        	</tr>
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td></td>
+            	<td><p class="p_2">A heatmap showing distribution of the traffic checkpoints.</p></td>
+        	</tr>
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td></td>
+            	<td><p class="p_2">A calendar in a shape of a tree chart, with preselected most recent monthly dataset.</p></td>
+        	</tr>
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td></td>
+            	<td><p class="p_2">A settings widget in a top right corner, used for manipulating visualization variables. Some are discussed in further.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">2.</p></td>
+    <td><a href="bilder/Slide_2.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_2.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Settings</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">User should be able to clear map of heatpoints and select highways view.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">3.</p></td>
+    <td><a href="bilder/Slide_3.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_3.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Settings</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">User should be able to stack some visual layers on top of each other (ex. highway with heatpoints).</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">4.</p></td>
+    <td><a href="bilder/Slide_6.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_6.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Settings</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">User should be able to change backgrounds of the map.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">5.</p></td>
+    <td><a href="bilder/Slide_4.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_4.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Settings</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">User should be able to switch from realistic highways layout to an abstract.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">6.</p></td>
+    <td><a href="bilder/Slide_5.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_5.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Interactivity</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">When user moves pointer over a checkpoint, related highway should be highlighted.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">7.</p></td>
+    <td><a href="bilder/Slide_7.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_7.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Interactivity</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">When user clicks on a checkpoint, whole related highway should get selected.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">8.</p></td>
+    <td><a href="bilder/Slide_8.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_8.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Interactivity</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">When user hold CTRL key and clicks on a checkpoint, only a speciffic node should get selected. CTRL key press functionality also should be applicable to moving mouse over a specific checkpoint for a purpose of highlighting it.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">9.</p></td>
+    <td><a href="bilder/Slide_9.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_9.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Interactivity</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">When user drags selected item a drop box should appear at the bottom, where user can release object, which immediately should get transformed into a barchart graph.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p class="p_0">10.</p></td>
+    <td><a href="bilder/Slide_10.jpg" target="_blank"><img class="proto_img" src="bilder/Slide_10.jpg"></a></td>
+    <td></td>
+    <td><p class="p_1">Interactivity</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">Similar drag and drop functionality should be available between horizontal and vertical bar charts, where last one should provide additional details for a selected checkpoint.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td height="2" bgcolor="red"></td>
+    <td bgcolor="red"></td>
+    <td bgcolor="red"></td>
+    <td bgcolor="red"></td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+		<table class="calendar_proto_tbl">
+			<tr>
+    			<td><a href="bilder/kalender_viz_5.jpg" target="_blank"><img class="calendar_img" src="bilder/kalender_viz_5.jpg"></a></td>
+	    	    <td class="calendar_spacing"></td>
+    		    <td><a href="bilder/kalender_viz_4.jpg" target="_blank"><img class="calendar_img" src="bilder/kalender_viz_4.jpg"></a></td>
+	        	<td class="calendar_spacing"></td>
+	        	<td><a href="bilder/kalender_viz_3.jpg" target="_blank"><img class="calendar_img" src="bilder/kalender_viz_3.jpg"></a></td>
+    		    <td class="calendar_spacing"></td>
+    	    	<td><a href="bilder/kalender_viz_2.jpg" target="_blank"><img class="calendar_img" src="bilder/kalender_viz_2.jpg"></a></td>
+		        <td class="calendar_spacing"></td>
+    	    	<td><a href="bilder/kalender_viz_1.jpg" target="_blank"><img class="calendar_img" src="bilder/kalender_viz_1.jpg"></a></td>
+			</tr>
+		</table>
+    </td>
+    <td></td>
+    <td><p class="p_1">Calendar Vis Mock-Ups</p>
+    	<table class="story_tbl">
+			<tr>
+        		<td><p class="p_bull">&bull;</p></td>
+            	<td class="bull_spacing"></td>
+            	<td><p class="p_2">Calendar tree-chart visualization is one of those few features that are at the top of our optional implementations list.</p></td>
+        	</tr>
+    	</table>
+    </td>
+  </tr>
+  <tr>
+    <td class="tbl_v_spacing"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
