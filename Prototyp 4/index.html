@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="de"><head>
+	<meta charset="UTF-8">
+	<title>Prototyp 4.1</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="aus">
+		<table>
+			<tr> 
+				<th></th> 
+				<th><h2>Autobahn</h2></th> 
+				<th><h2>Jahr</h2></th> 
+				<th><h2>Monat</h2></th> 
+				<th><h2>Tage</h2></th> 
+				<th><h2>Start</h2></th> 
+			</tr>
+			<tr>
+				<td></td>
+				<td><select id="plusA">
+					<option value="null">+</option>
+					<option value="A01">A1</option>
+					<option value="A02">A2(no)</option>
+				</td>
+				<td><select id="plusJ">
+					<option value="null">+</option>
+					<option value="2016">2016</option>
+					<option value="2015">2015(no)</option>
+				</td>
+				<td><select id="plusM">
+					<option value="null">+</option>
+					<option value="feb">Februar</option>
+					<option value="jan">Jänner(no)</option>
+				</td>
+				<td><select id="plusT">
+					<option value="null">+</option>
+					<option value="1">Mo-So</option>
+					<option value="2">Mo-Fr</option>
+					<option value="3">Di-Do</option>
+					<option value="4">Mo</option>
+					<option value="5">Fr</option>
+					<option value="6">Sa</option>
+					<option value="7">Sonn-Feiertag</option>
+				</td>
+				<td><select id="start">
+					<option value="Altlengbach">Altlengbach</option>
+				</td>
+			<tr>
+		</table>
+		<div id="klasse">
+			<p>
+			<input type="radio" id="kfz" name="typ" value="kfz"> Gesamt<br>
+			<input type="radio" id="lkw" name="typ" value="lkw"> Lkw<br>
+			<input type="radio" id="pkw" name="typ" value="pkw"> Pkw<br>
+			</p>
+		</div>
+		<div><button id="buttonZeichnen" onclick="collect()">zeichnen</button></div>
+	</div>
+	<div id="svgDiv">
+		<!--d3 laden -->
+		<script src="d3.min.js"></script>
+		<script src="vis.js"></script>
+		<script src="functions.js"></script>
+	</div>
+</body>
+</html>
